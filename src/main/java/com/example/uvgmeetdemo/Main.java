@@ -17,6 +17,7 @@ public class Main extends Application {
 
 
         LoginScreen loginScreen = new LoginScreen();
+        ProfileCreationScreen profileCreationScreen = new ProfileCreationScreen();
 
         Scene loginScene = new Scene(loginScreen.getPane(), 800, 600);
         primaryStage.setTitle("UVGMeet DEMO");
