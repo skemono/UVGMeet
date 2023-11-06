@@ -15,5 +15,20 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
+
+        LoginScreen loginScreen = new LoginScreen();
+
+        Scene loginScene = new Scene(loginScreen.getPane(), 800, 600);
+        primaryStage.setTitle("UVGMeet DEMO");
+        primaryStage.setScene(loginScene);
+        primaryStage.show();
+
+
+        loginScreen.setOnLoginSuccess(() -> {
+            Scene profileCreationScene = new Scene(profileCreationScreen.getPane(), 800, 600);
+            primaryStage.setScene(profileCreationScene);
+        });
+
+
     }
 }
