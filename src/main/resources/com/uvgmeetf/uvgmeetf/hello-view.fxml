@@ -42,7 +42,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uvgmeetf.uvgmeetf.RegisterController">
    <children>
       <BorderPane prefHeight="617.0" prefWidth="335.0">
          <center>
@@ -50,11 +50,11 @@
                <children>
                   <ImageView fitHeight="27.0" fitWidth="174.0" layoutX="108.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../Downloads/Registrar.png" />
+                        <Image url="@Registrar.png" />
                      </image>
                   </ImageView>
                   <TextField fx:id="email" layoutX="60.0" layoutY="139.0" prefHeight="30.0" prefWidth="215.0" promptText="Correo Institucional" />
-                  <PasswordField fx:id="passwd" layoutX="60.0" layoutY="188.0" prefHeight="30.0" prefWidth="215.0" promptText="Contraseña" />
+                  <PasswordField fx:id="passwd" layoutX="60.0" layoutY="187.0" prefHeight="30.0" prefWidth="215.0" promptText="Contraseña" />
                   <TextField fx:id="user" layoutX="60.0" layoutY="89.0" prefHeight="30.0" prefWidth="215.0" promptText="Usuario" />
                   <Button fx:id="regBton" layoutX="70.0" layoutY="252.0" mnemonicParsing="false" onAction="#Register" prefHeight="43.0" prefWidth="196.0" text="Button">
                      <effect>
@@ -73,12 +73,12 @@
                <children>
                   <ImageView fitHeight="169.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../Downloads/topBubble.png" />
+                        <Image url="@topBubble.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="52.0" fitWidth="246.0" layoutX="45.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../../../Downloads/title.png" />
+                        <Image url="@title.png" />
                      </image>
                   </ImageView>
                </children>

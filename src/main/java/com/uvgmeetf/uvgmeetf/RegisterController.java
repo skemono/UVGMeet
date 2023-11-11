@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+
 public class RegisterController {
 
     @FXML
@@ -22,7 +23,7 @@ public class RegisterController {
 
     @FXML
     void Register(ActionEvent event) {
-
+        System.out.println("boton registro nashe");
     }
 
 }
