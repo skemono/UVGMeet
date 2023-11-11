@@ -1,4 +1,4 @@
-module com.example.uvgmeetdemo {
+module com.uvgmeetf.uvgmeetf {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -8,9 +8,8 @@ module com.example.uvgmeetdemo {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.example.uvgmeetdemo to javafx.fxml;
-    exports com.example.uvgmeetdemo;
+    opens com.uvgmeetf.uvgmeetf to javafx.fxml;
+    exports com.uvgmeetf.uvgmeetf;
 }

@@ -8,7 +8,7 @@
 # "License"); you may not use this file except in compliance
 # with the License.  You may obtain a copy of the License at
 #
-#    https:
+#    https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing,
 # software distributed under the License is distributed on an
@@ -59,7 +59,7 @@ case "`uname`" in
   MINGW*) mingw=true;;
   Darwin*) darwin=true
     # Use /usr/libexec/java_home if available, otherwise fall back to /Library/Java/Home
-    # See https:
+    # See https://developer.apple.com/library/mac/qa/qa1170/_index.html
     if [ -z "$JAVA_HOME" ]; then
       if [ -x "/usr/libexec/java_home" ]; then
         export JAVA_HOME="`/usr/libexec/java_home`"
@@ -218,7 +218,7 @@ else
     if [ -n "$MVNW_REPOURL" ]; then
       jarUrl="$MVNW_REPOURL/org/apache/maven/wrapper/maven-wrapper/3.1.0/maven-wrapper-3.1.0.jar"
     else
-      jarUrl="https:
+      jarUrl="https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.1.0/maven-wrapper-3.1.0.jar"
     fi
     while IFS="=" read key value; do
       case "$key" in (wrapperUrl) jarUrl="$value"; break ;;
