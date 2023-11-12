@@ -130,7 +130,7 @@ public class UVGMeetDB {
     }
 
     // VERIFICAR EXISTENCIA EN UN DOCUMENTO DENTRO DE UNA COLECCION
-    public boolean verificarExistencia(String coleccion, Object propiedad, Object comparacion) throws ExecutionException, InterruptedException {
+    public String verificarExistencia(String coleccion, Object propiedad, Object comparacion) throws ExecutionException, InterruptedException {
         ApiFuture<QuerySnapshot> future = db.collection(coleccion).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 
@@ -140,18 +140,18 @@ public class UVGMeetDB {
                 Object value = entry.getValue();
                 if (key.equals(propiedad)){
                     System.out.println("Comparando " + comparacion + " : " + value);
-                    if (value.equals(comparacion)){
-                        return true;
+                    if (value.toString().equals(comparacion.toString())){
+                        return document.getId();
                     }
                 }
             }
 
         }
-        return false;
+        return "";
     }
 
     // VERIFICAR EXISTENCIA EN UN DOCUMENTO DENTRO DE DOS COLECCIONES
-    public boolean verificarExistencia(String coleccion, String documento, String coleccion2, Object propiedad, Object comparacion) throws ExecutionException, InterruptedException {
+    public String verificarExistencia(String coleccion, String documento, String coleccion2, Object propiedad, Object comparacion) throws ExecutionException, InterruptedException {
         ApiFuture<QuerySnapshot> future = db.collection(coleccion).document(documento).collection(coleccion2).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 
@@ -161,13 +161,13 @@ public class UVGMeetDB {
                 Object value = entry.getValue();
                 System.out.println(key + ": " + value);
                 if (key.equals(propiedad)){
-                    if (value.equals(comparacion)){
-                        return true;
+                    if (value.toString().equals(comparacion.toString())){
+                        return document.getId();
                     }
                 }
             }
         }
-        return false;
+        return "";
     }
 }
 

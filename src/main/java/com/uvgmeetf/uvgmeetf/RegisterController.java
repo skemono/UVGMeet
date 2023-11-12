@@ -41,12 +41,14 @@ public class RegisterController {
 
     private UVGMeetDB baseDatos;
 
+    private SceneManager sceneManager;
     public RegisterController() throws IOException {
         this.baseDatos = Main.getMeetDB();
+        this.sceneManager = Main.getSceneManager();
     }
 
     @FXML
-    void Register(ActionEvent event) throws ExecutionException, InterruptedException {
+    void Register(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
         System.out.println("boton registro nashe");
         Random random = new Random();
 
@@ -60,7 +62,7 @@ public class RegisterController {
             return;
         }
         int randomNumber = random.nextInt(90000) + 10000;
-        while (this.baseDatos.verificarExistencia("usuario", "id", randomNumber)){
+        while (!this.baseDatos.verificarExistencia("usuario", "id", randomNumber).isEmpty()){
             randomNumber = random.nextInt(90000) + 10000;
         }
 
@@ -71,10 +73,14 @@ public class RegisterController {
         nuevoUsuario.put("id", randomNumber);
 
         if (correo.contains("@uvg.edu.gt")){
-            if (!this.baseDatos.verificarExistencia("usuario", "correo", correo)){
+            if (this.baseDatos.verificarExistencia("usuario", "correo", correo).isEmpty()){
                 this.baseDatos.agregar("usuario", "usuario" + this.baseDatos.nextNumberOfDoc("usuario"), nuevoUsuario);
                 registrarError.setStyle("-fx-text-fill: black");
                 registrarError.setText("Registrado con éxito.");
+                Main.getSessionManager().setId(randomNumber);
+                Main.getSessionManager().setUser(usuario);
+                this.sceneManager.setFXML("creacionPerfil.fxml");
+
             } else {
                 registrarError.setStyle("-fx-text-fill: red");
                 registrarError.setText("El correo ingresado ya esta en uso.");

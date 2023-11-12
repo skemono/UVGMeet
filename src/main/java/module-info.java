@@ -17,7 +17,7 @@ module com.uvgmeetf.uvgmeetf {
     requires google.cloud.core.http;
     requires com.google.api.apicommon;
     requires com.google.auth;
-
+    requires google.cloud.storage;
     opens com.uvgmeetf.uvgmeetf to javafx.fxml;
     exports com.uvgmeetf.uvgmeetf;
 }

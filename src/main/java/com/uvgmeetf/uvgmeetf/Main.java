@@ -11,12 +11,19 @@ public class Main extends Application {
     private static SceneManager sceneManager;
     private static Session sessionManager;
 
+    private static UVGMeetStorage storageManager;
+
     @Override
     public void start(Stage stage) throws IOException {
+        String currentWorkingDirectory = System.getProperty("user.dir");
+
+        // Print the current working directory to the console.
+        System.out.println("The current working directory is: " + currentWorkingDirectory);
         sceneManager = new SceneManager(stage);
         meetDB = new UVGMeetDB();
         sceneManager.setFXML("registrar.fxml");
         sessionManager = new Session();
+        storageManager = new UVGMeetStorage();
 
     }
 
@@ -30,6 +37,10 @@ public class Main extends Application {
 
     public static Session getSessionManager() {
         return sessionManager;
+    }
+
+    public static UVGMeetStorage getStorageManager() {
+        return storageManager;
     }
 
     public static void main(String[] args) {
