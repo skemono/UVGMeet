@@ -1,4 +1,4 @@
-package com.example.uvgmeetdemo;
+package com.uvgmeetf.uvgmeetf;
 
 import java.time.LocalDate;
 

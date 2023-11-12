@@ -1,4 +1,5 @@
-package com.example.uvgmeetdemo;
+package com.uvgmeetf.uvgmeetf;
+
 public class User {
     private String username;
     private String name;

@@ -1,4 +1,4 @@
-package com.example.uvgmeetdemo;
+package com.uvgmeetf.uvgmeetf;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.Pos;
