@@ -130,7 +130,7 @@ public class UVGMeetDB {
     }
 
     // VERIFICAR EXISTENCIA EN UN DOCUMENTO DENTRO DE UNA COLECCION
-    public boolean verificarExistencia(String coleccion, String documento, Object propiedad, Object comparacion) throws ExecutionException, InterruptedException {
+    public boolean verificarExistencia(String coleccion, Object propiedad, Object comparacion) throws ExecutionException, InterruptedException {
         ApiFuture<QuerySnapshot> future = db.collection(coleccion).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
 
@@ -138,9 +138,9 @@ public class UVGMeetDB {
             for (Map.Entry<String, Object> entry : document.getData().entrySet()) {
                 String key = entry.getKey();
                 Object value = entry.getValue();
-                System.out.println(key + ": " + value);
-                if (key == propiedad){
-                    if (value == comparacion){
+                if (key.equals(propiedad)){
+                    System.out.println("Comparando " + comparacion + " : " + value);
+                    if (value.equals(comparacion)){
                         return true;
                     }
                 }
@@ -160,13 +160,12 @@ public class UVGMeetDB {
                 String key = entry.getKey();
                 Object value = entry.getValue();
                 System.out.println(key + ": " + value);
-                if (key == propiedad){
-                    if (value == comparacion){
+                if (key.equals(propiedad)){
+                    if (value.equals(comparacion)){
                         return true;
                     }
                 }
             }
-
         }
         return false;
     }

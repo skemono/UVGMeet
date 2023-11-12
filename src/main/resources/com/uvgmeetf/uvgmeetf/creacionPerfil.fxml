@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uvgmeetf.uvgmeetf.CreacionPerfilController">
+   <children>
+      <BorderPane prefHeight="617.0" prefWidth="335.0">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="carrera" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="139.0" promptText="Carrera" />
+                  <Button fx:id="crearPerfilBton" layoutX="69.0" layoutY="334.0" mnemonicParsing="false" onAction="#crearPerfil" prefHeight="43.0" prefWidth="196.0" text="Button">
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/lordk/OneDrive/Documents/Java/UVGMeet/src/main/resources/com/uvgmeetf/uvgmeetf/btonCrear.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                  </Button>
+                  <TextArea fx:id="bio" layoutX="15.0" layoutY="56.0" prefHeight="91.0" prefWidth="307.0" promptText="Biografía" />
+                  <TextField fx:id="edad" layoutX="183.0" layoutY="14.0" prefHeight="30.0" prefWidth="139.0" promptText="Edad" />
+                  <Pane layoutX="142.0" layoutY="279.0" prefHeight="51.0" prefWidth="49.0">
+                     <children>
+                        <Button fx:id="subirImageBton" layoutX="4.0" layoutY="5.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="42.0" text="Button">
+                           <effect>
+                              <ImageInput>
+                                 <source>
+                                    <Image url="file:/C:/Users/lordk/OneDrive/Documents/Java/UVGMeet/src/main/resources/com/uvgmeetf/uvgmeetf/upload.png" />
+                                 </source>
+                              </ImageInput>
+                           </effect>
+                        </Button>
+                     </children>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.5368421077728271" green="0.5368421077728271" blue="0.5368421077728271" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Pane>
+                  <Label layoutX="129.0" layoutY="260.0" text="Foto de Perfil" textFill="#aeaeae">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="gusto" layoutX="15.0" layoutY="159.0" prefHeight="91.0" prefWidth="307.0" promptText="Gustos" />
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <AnchorPane prefHeight="174.0" prefWidth="337.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="169.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@topBubble.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="116.0" fitWidth="225.0" layoutX="56.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@CreacionDePerfil.png" />
+                     </image>
+                  </ImageView>
+                  <GridPane layoutX="31.0" layoutY="173.0" prefHeight="18.0" prefWidth="274.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="registrarError" textFill="RED" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="0.0" prefWidth="337.0" visible="false" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutY="20.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="83.0" text="Button">
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/lordk/Downloads/BtonMatch.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                  </Button>
+                  <Button layoutX="83.8" layoutY="20.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Button">
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/lordk/Downloads/BtonActividades.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                  </Button>
+                  <Button layoutX="168.0" layoutY="20.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="83.0" text="Button">
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/lordk/Downloads/BtonChat.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                  </Button>
+                  <Button layoutX="251.0" layoutY="20.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Button">
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/lordk/Downloads/BtonPerfil.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</VBox>
