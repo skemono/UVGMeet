@@ -70,7 +70,7 @@
                   <TextField fx:id="edad" layoutX="183.0" layoutY="14.0" prefHeight="30.0" prefWidth="139.0" promptText="Edad" />
                   <Pane layoutX="142.0" layoutY="279.0" prefHeight="51.0" prefWidth="49.0">
                      <children>
-                        <Button fx:id="subirImageBton" layoutX="4.0" layoutY="5.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="42.0" text="Button">
+                        <Button fx:id="subirImageBton" layoutX="4.0" layoutY="5.0" mnemonicParsing="false" onAction="#subirImagen" prefHeight="41.0" prefWidth="42.0" text="Button">
                            <effect>
                               <ImageInput>
                                  <source>

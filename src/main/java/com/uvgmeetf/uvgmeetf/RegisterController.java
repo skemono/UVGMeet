@@ -53,6 +53,12 @@ public class RegisterController {
         String correo = email.getText();
         String usuario = user.getText();
         String contra = passwd.getText();
+
+        if (correo.isEmpty() && usuario.isEmpty() && contra.isEmpty()){
+            registrarError.setStyle("-fx-text-fill: red");
+            registrarError.setText("Debe llenar todos los campos.");
+            return;
+        }
         int randomNumber = random.nextInt(90000) + 10000;
         while (this.baseDatos.verificarExistencia("usuario", "id", randomNumber)){
             randomNumber = random.nextInt(90000) + 10000;

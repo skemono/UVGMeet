@@ -32,8 +32,35 @@ public class CreacionPerfilController {
 
     private UVGMeetDB baseDatos = Main.getMeetDB();
 
+    private boolean imageUploaded = false;
+
+    void showError(String txt){
+        this.registrarError.setStyle("-fx-text-fill: red");
+        this.registrarError.setText(txt);
+        this.registrarError.requestLayout();
+
+    }
+
+    void showMessage(String txt){
+        this.registrarError.setStyle("-fx-text-fill: black");
+        this.registrarError.setText(txt);
+        this.registrarError.requestLayout();
+    }
     @FXML
     void crearPerfil(ActionEvent event) {
+        String biografia = this.bio.getText();
+        String career = this.carrera.getText();
+        String age = this.edad.getText();
+        String likes = this.gusto.getText();
+
+        if (biografia.isEmpty() || career.isEmpty() || age.isEmpty() || likes.isEmpty() || !imageUploaded){
+            showError("Debe llenar todos los campos.");
+            return;
+        }
+    }
+
+    @FXML
+    void subirImagen(ActionEvent event) {
 
     }
 
