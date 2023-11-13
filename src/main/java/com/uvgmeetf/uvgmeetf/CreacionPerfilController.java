@@ -2,6 +2,7 @@ package com.uvgmeetf.uvgmeetf;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -43,6 +44,8 @@ public class CreacionPerfilController {
     private UVGMeetDB baseDatos = Main.getMeetDB();
     private Session sesion = Main.getSessionManager();
 
+    private SceneManager sceneManager = Main.getSceneManager();
+
 
     private boolean imageUploaded = false;
 
@@ -82,6 +85,7 @@ public class CreacionPerfilController {
         this.baseDatos.actualizar("usuario", this.baseDatos.verificarExistencia("usuario", "id", this.sesion.getId()), usuarioCompleto);
         UVGMeetStorage.uploadObject("uvgmeetprofilepics",this.sesion.getId()+".png", "src\\main\\resources\\com\\uvgmeetf\\uvgmeetf\\SessionAssets\\"+this.sesion.getId()+".png");
         showMessage("Perfil creado exitosamente.");
+        this.sceneManager.setFXML("matching.fxml");
 
 
     }

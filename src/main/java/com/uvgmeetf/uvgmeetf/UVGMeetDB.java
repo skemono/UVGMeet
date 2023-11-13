@@ -169,5 +169,29 @@ public class UVGMeetDB {
         }
         return "";
     }
+
+    public String verificarExistenciaDoc(String coleccion, String comparacion) throws ExecutionException, InterruptedException {
+        ApiFuture<QuerySnapshot> future = db.collection(coleccion).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+        for (QueryDocumentSnapshot document : documents) {
+            if (document.getId().equals(comparacion)){
+                return document.getId();
+            }
+        }
+        return "";
+    }
+
+    public String verficarExistenciaDoc(String coleccion, String documento, String coleccion2, String comparacion) throws ExecutionException, InterruptedException {
+        ApiFuture<QuerySnapshot> future = db.collection(coleccion).document(documento).collection(coleccion2).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+
+        for (QueryDocumentSnapshot document : documents) {
+            if (document.getId().equals(comparacion)){
+                return document.getId();
+            }
+        }
+        return "";
+    }
 }
 

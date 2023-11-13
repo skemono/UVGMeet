@@ -79,7 +79,6 @@ public class UVGMeetStorage {
 
         Blob blob = storage.get(BlobId.of(bucketName, objectName));
         blob.downloadTo(Paths.get(destFilePath));
-
         System.out.println(
                 "Downloaded object "
                         + objectName
