@@ -131,7 +131,7 @@
                         </Button>
                      </children>
                   </GridPane>
-                  <Rectangle fx:id="transitionRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="359.0" layoutX="8.0" layoutY="2.0" opacity="0.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" width="319.0">
+                  <Rectangle fx:id="transitionRectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="359.0" layoutX="8.0" layoutY="2.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" width="319.0">
                      <stroke>
                         <LinearGradient endX="1.0" endY="0.5606060461564497">
                            <stops>
@@ -149,6 +149,16 @@
                         </LinearGradient>
                      </stroke>
                   </Rectangle>
+                  <Label fx:id="noUsersLeft1" layoutX="34.0" layoutY="171.0" text="No quedan más usuarios para mostrarte" visible="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="noUsersLeft2" layoutX="102.0" layoutY="115.0" text="VAYA..." visible="false">
+                     <font>
+                        <Font name="System Bold" size="38.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </center>
@@ -171,7 +181,7 @@
          <bottom>
             <AnchorPane prefHeight="49.0" prefWidth="336.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="matchBton" layoutY="20.0" mnemonicParsing="false" onAction="#setMatch" prefHeight="48.0" prefWidth="83.0" text="Button">
+                  <Button fx:id="matchBton" layoutY="20.0" mnemonicParsing="false" onAction="#activadeMatchS" prefHeight="48.0" prefWidth="83.0" text="Button">
                      <effect>
                         <ImageInput>
                            <source>
@@ -180,7 +190,7 @@
                         </ImageInput>
                      </effect>
                   </Button>
-                  <Button fx:id="activityBton" layoutX="83.8" layoutY="20.0" mnemonicParsing="false" onAction="#setActivity" prefHeight="48.0" prefWidth="84.0" text="Button">
+                  <Button fx:id="activityBton" layoutX="83.8" layoutY="20.0" mnemonicParsing="false" onAction="#activateActivityS" prefHeight="48.0" prefWidth="84.0" text="Button">
                      <effect>
                         <ImageInput>
                            <source>
@@ -189,7 +199,7 @@
                         </ImageInput>
                      </effect>
                   </Button>
-                  <Button fx:id="chatBton" layoutX="168.0" layoutY="20.0" mnemonicParsing="false" onAction="#setChat" prefHeight="47.0" prefWidth="83.0" text="Button">
+                  <Button fx:id="chatBton" layoutX="168.0" layoutY="20.0" mnemonicParsing="false" onAction="#activateChatS" prefHeight="47.0" prefWidth="83.0" text="Button">
                      <effect>
                         <ImageInput>
                            <source>
@@ -198,7 +208,7 @@
                         </ImageInput>
                      </effect>
                   </Button>
-                  <Button fx:id="profileBton" layoutX="251.0" layoutY="20.0" mnemonicParsing="false" onAction="#setProfile" prefHeight="48.0" prefWidth="84.0" text="Button">
+                  <Button fx:id="profileBton" layoutX="251.0" layoutY="20.0" mnemonicParsing="false" onAction="#activateProfileS" prefHeight="48.0" prefWidth="84.0" text="Button">
                      <effect>
                         <ImageInput>
                            <source>

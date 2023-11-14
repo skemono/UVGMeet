@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Effect;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +33,9 @@ public class CreacionPerfilController {
     private Button crearPerfilBton;
 
     @FXML
+    private AnchorPane bottomPane;
+
+    @FXML
     private TextField edad;
 
     @FXML
@@ -40,6 +46,17 @@ public class CreacionPerfilController {
 
     @FXML
     private Button subirImageBton;
+
+    @FXML
+    private Button activityScreenBton;
+
+    @FXML
+    private Button chatScreenBton;
+    @FXML
+    private Button matchScreenBton;
+
+    @FXML
+    private Button profileScreenBton;
 
     private UVGMeetDB baseDatos = Main.getMeetDB();
     private Session sesion = Main.getSessionManager();
@@ -61,6 +78,17 @@ public class CreacionPerfilController {
         this.registrarError.setText(txt);
         this.registrarError.requestLayout();
     }
+
+    public CreacionPerfilController() throws ExecutionException, InterruptedException {
+        Map<String, Object> pollo = baseDatos.leer("usuario", baseDatos.verificarExistencia("usuario", "id", sesion.getId()));
+        if (pollo.get("bio") != null){
+            bio.setText(pollo.get("bio").toString());
+            carrera.setText(pollo.get("carrera").toString());
+            edad.setText(pollo.get("edad").toString());
+            imageUploaded = true;
+            bottomPane.setVisible(true);
+        }
+    }
     @FXML
     void crearPerfil(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
         String biografia = this.bio.getText();
@@ -78,8 +106,6 @@ public class CreacionPerfilController {
         usuarioCompleto.put("carrera", career);
         usuarioCompleto.put("edad", age);
         usuarioCompleto.put("gustos", likes);
-
-
 
 
         this.baseDatos.actualizar("usuario", this.baseDatos.verificarExistencia("usuario", "id", this.sesion.getId()), usuarioCompleto);
@@ -110,6 +136,26 @@ public class CreacionPerfilController {
             Files.copy(selectedFile.toPath(), path);
             this.imageUploaded = true;
         }
+    }
+
+    @FXML
+    void activadeMatchS(ActionEvent event) throws IOException {
+        sceneManager.setFXML("matching.fxml");
+    }
+
+    @FXML
+    void activateActivityS(ActionEvent event) throws IOException {
+        sceneManager.setFXML("actividad.fxml");
+    }
+
+    @FXML
+    void activateChatS(ActionEvent event) throws IOException {
+        sceneManager.setFXML("chat.fxml");
+    }
+
+    @FXML
+    void activateProfileS(ActionEvent event) throws IOException {
+        sceneManager.setFXML("perfil.fxml");
     }
 
 }

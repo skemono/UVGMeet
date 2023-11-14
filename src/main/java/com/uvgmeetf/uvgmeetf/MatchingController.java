@@ -11,15 +11,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class MatchingController {
-
-    @FXML
-    private Button activityBton;
 
     @FXML
     private Button btonDislike;
@@ -31,19 +30,17 @@ public class MatchingController {
     private Label carrera;
 
     @FXML
-    private Button chatBton;
-
-    @FXML
     private ImageView likedView;
-
-    @FXML
-    private Button matchBton;
 
     @FXML
     private ImageView pfp;
 
     @FXML
-    private Button profileBton;
+    private Label noUsersLeft1;
+
+    @FXML
+    private Label noUsersLeft2;
+
 
     @FXML
     private Label titulo;
@@ -51,8 +48,21 @@ public class MatchingController {
     @FXML
     private Rectangle transitionRectangle;
 
+    @FXML
+    private Button activityScreenBton;
+
+    @FXML
+    private Button chatScreenBton;
+    @FXML
+    private Button matchScreenBton;
+
+    @FXML
+    private Button profileScreenBton;
+
     private UVGMeetDB baseDatos = Main.getMeetDB();
     private Session sesion = Main.getSessionManager();
+
+    private SceneManager sceneManager = Main.getSceneManager();
     private List<Map<String, Object>> displayUsers = new ArrayList<>();
 
     private Map<String, Object> interestedDoc = new HashMap<>();
@@ -67,34 +77,68 @@ public class MatchingController {
         transition.setDuration(Duration.seconds(1));
         transition.play();
     }
-
     private int currentIndex = 0;
+
+    void ranOutUsers(){
+        setOpacity(1);
+        btonLike.setDisable(true);
+        btonDislike.setDisable(true);
+
+        btonDislike.setVisible(false);
+        btonLike.setVisible(false);
+
+        noUsersLeft1.setVisible(true);
+        noUsersLeft2.setVisible(true);
+    }
     public void changeUser() {
         setOpacity(1);
         Platform.runLater(() -> {
+            if (currentIndex >= displayUsers.size()){
+                return;
+            }
             Map<String, Object> currentUser = displayUsers.get(currentIndex);
             titulo.setText(currentUser.get("nombre").toString()+", "+currentUser.get("edad").toString());
             carrera.setText("Estudia "+currentUser.get("carrera").toString());
             UVGMeetStorage.downloadObject("uvgmeetprofilepics", currentUser.get("id")+".png", "src\\main\\resources\\com\\uvgmeetf\\uvgmeetf\\SessionAssets\\"+currentUser.get("id")+".png");
             Platform.runLater(() -> {
-                Image userpfp = new Image(Objects.requireNonNull(Main.class.getResourceAsStream("src\\main\\resources\\com\\uvgmeetf\\uvgmeetf\\SessionAssets\\" + currentUser.get("id") + ".png")));
+                Image userpfp = null;
+
+                while (true) {
+                    File file = new File("src\\main\\resources\\com\\uvgmeetf\\uvgmeetf\\SessionAssets\\" + currentUser.get("id") + ".png");
+                    if (file.exists()) {
+                        userpfp = new Image(file.toURI().toString());
+                        break;
+                    }
+
+                }
+
+                //Image userpfp = new Image(Objects.requireNonNull(Main.class.getResourceAsStream("src\\main\\resources\\com\\uvgmeetf\\uvgmeetf\\SessionAssets\\" + currentUser.get("id") + ".png")));
                 pfp.setImage(userpfp);
                 setOpacity(0);
                 likedView.setOpacity(0);
-                currentIndex += 1;
             });
         });
-
+        currentIndex += 1;
+        if (currentIndex >= displayUsers.size()){
+            ranOutUsers();
+        }
     }
     public MatchingController() throws ExecutionException, InterruptedException, FileNotFoundException {
         interestedDoc.put("a","a");
         List<Map<String, Object>> opa = baseDatos.leer("usuario");
         for (Map<String, Object> map : opa) {
-            if (baseDatos.verficarExistenciaDoc("usuario", baseDatos.verificarExistencia("usuario", "id", sesion.getId()), "visto", map.get("id").toString()).isEmpty() && !map.get("id").equals(sesion.getId())){
-                displayUsers.add(map);
+            if (map.get("id") != null){
+                boolean equalswot = map.get("id").toString().equals(String.valueOf(sesion.getId()));
+                if (baseDatos.verficarExistenciaDoc("usuario", baseDatos.verificarExistencia("usuario", "id", sesion.getId()), "visto", map.get("id").toString()).isEmpty() && !equalswot && map.get("bio") != null){
+                    displayUsers.add(map);
+                }
             }
         }
-        Platform.runLater(this::changeUser);
+        if (!displayUsers.isEmpty()){
+            Platform.runLater(this::changeUser);
+        }else {
+            ranOutUsers();
+        }
     }
 
     @FXML
@@ -119,23 +163,23 @@ public class MatchingController {
     }
 
     @FXML
-    void setActivity(ActionEvent event) {
-
+    void activadeMatchS(ActionEvent event) throws IOException {
+        sceneManager.setFXML("matching.fxml");
     }
 
     @FXML
-    void setChat(ActionEvent event) {
-
+    void activateActivityS(ActionEvent event) throws IOException {
+        sceneManager.setFXML("actividad.fxml");
     }
 
     @FXML
-    void setMatch(ActionEvent event) {
-
+    void activateChatS(ActionEvent event) throws IOException {
+        sceneManager.setFXML("chat.fxml");
     }
 
     @FXML
-    void setProfile(ActionEvent event) {
-
+    void activateProfileS(ActionEvent event) throws IOException {
+        sceneManager.setFXML("perfil.fxml");
     }
 
 }

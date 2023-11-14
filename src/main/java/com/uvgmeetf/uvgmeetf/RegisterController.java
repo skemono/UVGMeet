@@ -2,10 +2,7 @@ package com.uvgmeetf.uvgmeetf;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,6 +35,9 @@ public class RegisterController {
 
     @FXML
     private Label registrarError;
+
+    @FXML
+    private Hyperlink mandarLogin;
 
     private UVGMeetDB baseDatos;
 
@@ -91,6 +91,11 @@ public class RegisterController {
         }
         registrarError.requestLayout();
 
+    }
+
+    @FXML
+    void sendToLogin(ActionEvent event) throws IOException {
+        sceneManager.setFXML("login.fxml");
     }
 
 }
