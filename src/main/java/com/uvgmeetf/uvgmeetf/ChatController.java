@@ -211,26 +211,6 @@ public class ChatController {
                 newUserPane.add(newUserButton, 0, 2, 1, 1);
 
 
-
-
-
-
-                /*ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteOutputStream);
-                objectOutputStream.writeObject(userPane);
-                objectOutputStream.close();
-
-                byte[] componentData = byteOutputStream.toByteArray();
-
-                ByteArrayInputStream byteInputStream = new ByteArrayInputStream(componentData);
-                ObjectInputStream objectInputStream = new ObjectInputStream(byteInputStream);
-                GridPane clonedUserPane = (GridPane) objectInputStream.readObject();
-                objectInputStream.close();
-
-                Label clonedLabel = (Label) clonedUserPane.lookup("#userName");
-                ImageView clonedImageView = (ImageView) clonedUserPane.lookup("#userImage");
-                Button clonedBton = (Button) clonedUserPane.lookup("#userBton");*/
-
                 newUserButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
