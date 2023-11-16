@@ -17,7 +17,6 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         String currentWorkingDirectory = System.getProperty("user.dir");
 
-        // Print the current working directory to the console.
         System.out.println("The current working directory is: " + currentWorkingDirectory);
         sceneManager = new SceneManager(stage);
         meetDB = new UVGMeetDB();
