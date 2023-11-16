@@ -32,7 +32,6 @@ public class LoginController {
 
     private UVGMeetDB baseDatos = Main.getMeetDB();
     private Session sesion = Main.getSessionManager();
-
     private SceneManager sceneManager = Main.getSceneManager();
     private String sessionStarted = "";
     @FXML

@@ -1,14 +1,17 @@
 package com.uvgmeetf.uvgmeetf;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,10 +53,28 @@ public class ProfileController {
     @FXML
     private Button profileScreenBton;
 
+    @FXML
+    private Rectangle transitionRectangle;
+
     private UVGMeetDB baseDatos = Main.getMeetDB();
     private Session sesion = Main.getSessionManager();
 
     private SceneManager sceneManager = Main.getSceneManager();
+
+
+    private void disableRectangle(ActionEvent actionEven){
+        transitionRectangle.setVisible(false);
+    }
+    void setOpacity(int value){
+        FadeTransition transition = new FadeTransition();
+        transition.setNode(this.transitionRectangle);
+        transition.setFromValue(this.transitionRectangle.getOpacity());
+        transition.setToValue(value);
+        transition.setDuration(Duration.seconds(1));
+        transition.play();
+        transition.setOnFinished(this::disableRectangle);
+    }
+
 
     @FXML
     void sendToEdit(ActionEvent event) throws ExecutionException, InterruptedException, IOException {
@@ -81,6 +102,8 @@ public class ProfileController {
 
                 //Image userpfp = new Image(Objects.requireNonNull(Main.class.getResourceAsStream("src\\main\\resources\\com\\uvgmeetf\\uvgmeetf\\SessionAssets\\" + currentUser.get("id") + ".png")));
                 userpfp.setImage(pfp);
+                setOpacity(0);
+
             });
             bio.setDisable(true);
             carrera.setDisable(true);

@@ -64,8 +64,6 @@ public class MatchingController {
 
     private SceneManager sceneManager = Main.getSceneManager();
     private List<Map<String, Object>> displayUsers = new ArrayList<>();
-
-    private Map<String, Object> interestedDoc = new HashMap<>();
     private Image bigDislike = new Image(Main.class.getResourceAsStream("bigdislike.png"));
     private Image bigLike = new Image(Main.class.getResourceAsStream("biglike.png"));
 
@@ -91,6 +89,10 @@ public class MatchingController {
         noUsersLeft2.setVisible(true);
     }
     public void changeUser() {
+        if (currentIndex >= displayUsers.size()){
+            System.out.println("bigger");
+            ranOutUsers();
+        }
         setOpacity(1);
         Platform.runLater(() -> {
             if (currentIndex >= displayUsers.size()){
@@ -118,47 +120,56 @@ public class MatchingController {
                 likedView.setOpacity(0);
             });
         });
-        currentIndex += 1;
-        if (currentIndex >= displayUsers.size()){
-            ranOutUsers();
-        }
     }
     public MatchingController() throws ExecutionException, InterruptedException, FileNotFoundException {
-        interestedDoc.put("a","a");
+
         List<Map<String, Object>> opa = baseDatos.leer("usuario");
+        List<String> popa = baseDatos.leerNombreDoc("usuario", baseDatos.verificarExistencia("usuario", "id", String.valueOf(sesion.getId())), "visto");
         for (Map<String, Object> map : opa) {
             if (map.get("id") != null){
                 boolean equalswot = map.get("id").toString().equals(String.valueOf(sesion.getId()));
-                if (baseDatos.verficarExistenciaDoc("usuario", baseDatos.verificarExistencia("usuario", "id", sesion.getId()), "visto", map.get("id").toString()).isEmpty() && !equalswot && map.get("bio") != null){
+                boolean viewed = false;
+
+                for (String docID : popa){
+                    if (docID.equals(map.get("id").toString())){
+                        System.out.println("Comparando " + docID + " con " + map.get("id"));
+                        viewed = true;
+                    }
+                }
+                if (!viewed && !equalswot && map.get("bio") != null){
                     displayUsers.add(map);
+                    System.out.println(displayUsers.toString());
                 }
             }
         }
         if (!displayUsers.isEmpty()){
             Platform.runLater(this::changeUser);
         }else {
-            ranOutUsers();
+            Platform.runLater(this::ranOutUsers);
         }
     }
 
     @FXML
     void meDisgusta(ActionEvent event) throws ExecutionException, InterruptedException {
+        Map<String, Object> interestedDoc = new HashMap<>();
+        interestedDoc.put("a","a");
         likedView.setImage(bigDislike);
         likedView.setOpacity(1);
         baseDatos.agregar("usuario", baseDatos.verificarExistencia("usuario", "id", sesion.getId()), "visto", displayUsers.get(currentIndex).get("id").toString(), interestedDoc);
+        currentIndex += 1;
         changeUser();
     }
 
     @FXML
     void meGusta(ActionEvent event) throws ExecutionException, InterruptedException {
+        Map<String, Object> interestedDoc = new HashMap<>();
         likedView.setImage(bigLike);
         likedView.setOpacity(1);
-        baseDatos.agregar("usuario",
-                baseDatos.verificarExistencia("usuario", "id", displayUsers.get(currentIndex).get("id")),
-                "interesado",
-                String.valueOf(sesion.getId()),
-                interestedDoc);
+        interestedDoc.put(String.valueOf(sesion.getId()), displayUsers.get(currentIndex).get("id"));
+
+        baseDatos.agregar("interes", sesion.getId() + ":" + displayUsers.get(currentIndex).get("id"), interestedDoc);
         baseDatos.agregar("usuario", baseDatos.verificarExistencia("usuario", "id", sesion.getId()), "visto", displayUsers.get(currentIndex).get("id").toString(), interestedDoc);
+        currentIndex += 1;
         changeUser();
     }
 

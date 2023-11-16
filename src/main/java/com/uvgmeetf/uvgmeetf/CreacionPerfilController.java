@@ -1,5 +1,6 @@
 package com.uvgmeetf.uvgmeetf;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -82,11 +83,14 @@ public class CreacionPerfilController {
     public CreacionPerfilController() throws ExecutionException, InterruptedException {
         Map<String, Object> pollo = baseDatos.leer("usuario", baseDatos.verificarExistencia("usuario", "id", sesion.getId()));
         if (pollo.get("bio") != null){
-            bio.setText(pollo.get("bio").toString());
-            carrera.setText(pollo.get("carrera").toString());
-            edad.setText(pollo.get("edad").toString());
-            imageUploaded = true;
-            bottomPane.setVisible(true);
+            Platform.runLater(() -> {
+                bio.setText(pollo.get("bio").toString());
+                carrera.setText(pollo.get("carrera").toString());
+                edad.setText(pollo.get("edad").toString());
+                gusto.setText(pollo.get("gustos").toString());
+                imageUploaded = true;
+                bottomPane.setVisible(true);
+            });
         }
     }
     @FXML

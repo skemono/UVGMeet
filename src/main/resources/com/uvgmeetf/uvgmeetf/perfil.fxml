@@ -82,7 +82,7 @@
             </AnchorPane>
          </top>
          <bottom>
-            <AnchorPane prefHeight="0.0" prefWidth="337.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="48.0" prefWidth="337.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="matchScreenBton" layoutY="20.0" mnemonicParsing="false" onAction="#activadeMatchS" prefHeight="48.0" prefWidth="83.0" text="Button">
                      <effect>
@@ -124,11 +124,11 @@
             </AnchorPane>
          </bottom>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="294.0" prefWidth="337.0" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="211.0" stroke="BLACK" strokeType="INSIDE" width="109.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="13.0" stroke="BLACK" strokeType="INSIDE" width="187.0" />
-                  <Pane layoutX="142.0" layoutY="279.0" prefHeight="51.0" prefWidth="49.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="213.0" layoutY="-14.0" stroke="BLACK" strokeType="INSIDE" width="109.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="24.0" layoutX="15.0" layoutY="-14.0" stroke="BLACK" strokeType="INSIDE" width="187.0" />
+                  <Pane layoutX="144.0" layoutY="265.0" prefHeight="51.0" prefWidth="49.0">
                      <effect>
                         <DropShadow>
                            <color>
@@ -137,19 +137,20 @@
                         </DropShadow>
                      </effect>
                   </Pane>
-                  <Label fx:id="carrera" layoutX="20.0" layoutY="3.0" text="Label" />
-                  <Label fx:id="edad" layoutX="218.0" layoutY="3.0" text="Label" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="177.0" layoutX="55.0" layoutY="154.0" stroke="BLACK" strokeType="INSIDE" width="226.0" />
-                  <StackPane layoutX="68.0" layoutY="159.0" prefHeight="166.0" prefWidth="200.0">
+                  <Label fx:id="carrera" layoutX="22.0" layoutY="-11.0" text="Label" />
+                  <Label fx:id="edad" layoutX="220.0" layoutY="-11.0" text="Label" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="177.0" layoutX="57.0" layoutY="140.0" stroke="BLACK" strokeType="INSIDE" width="226.0" />
+                  <StackPane layoutX="70.0" layoutY="145.0" prefHeight="166.0" prefWidth="200.0">
                      <children>
                         <ImageView fx:id="userpfp" fitHeight="158.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="97.0" layoutX="13.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="187.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="97.0" layoutX="211.0" layoutY="40.0" stroke="BLACK" strokeType="INSIDE" width="109.0" />
-                  <TextArea fx:id="bio" layoutX="17.0" layoutY="44.0" prefHeight="89.0" prefWidth="178.0" />
-                  <TextArea fx:id="gustos" layoutX="215.0" layoutY="44.0" prefHeight="90.0" prefWidth="101.0" />
-                  <Hyperlink fx:id="editSender" layoutX="149.0" layoutY="328.0" onAction="#sendToEdit" text="Editar" textFill="RED" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="97.0" layoutX="15.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="187.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="97.0" layoutX="213.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="109.0" />
+                  <TextArea fx:id="bio" layoutX="19.0" layoutY="30.0" prefHeight="89.0" prefWidth="178.0" />
+                  <TextArea fx:id="gustos" layoutX="217.0" layoutY="30.0" prefHeight="90.0" prefWidth="101.0" />
+                  <Hyperlink fx:id="editSender" layoutX="151.0" layoutY="314.0" onAction="#sendToEdit" text="Editar" textFill="RED" />
+                  <Rectangle fx:id="transitionRectangle" arcHeight="5.0" arcWidth="5.0" fill="#f2f2f2" height="354.0" layoutX="7.0" layoutY="-19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="319.0" />
                </children>
             </AnchorPane>
          </center>

@@ -46,6 +46,14 @@ public class UVGMeetDB {
         System.out.println("Update time : " + result.get().getUpdateTime());
     }
 
+    public void eliminar(String coleccion, String documento) throws ExecutionException, InterruptedException {
+        DocumentReference docRef = this.db.collection(coleccion).document(documento);
+        ApiFuture<WriteResult> result = docRef.delete();
+
+        System.out.println("Update time : " + result.get().getUpdateTime());
+    }
+
+
     // AGREGAR EN SEGUNDA COLECCIONES Y SEGUNDO DOCUMENTO
     public void agregar(String coleccion, String documento, String coleccion2, String documento2, Map<String, Object> data) throws ExecutionException, InterruptedException {
         DocumentReference docRef = this.db.collection(coleccion).document(documento).collection(coleccion2).document(documento2);
@@ -83,6 +91,31 @@ public class UVGMeetDB {
 
         for (QueryDocumentSnapshot document : documents) {
             res.add(document.getData());
+        }
+        return res;
+    }
+
+    // LEER NOMBRES DE TODOS LOS DOCUMENTOS DE UNA COLECCION
+
+    public List<String> leerNombreDoc(String coleccion) throws ExecutionException, InterruptedException {
+        ApiFuture<QuerySnapshot> future = db.collection(coleccion).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<String> res = new ArrayList<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            res.add(document.getId());
+        }
+        return res;
+    }
+
+    // LEER NOMBRES DE TODOS LOS DOCUMENTOS DE LA SEGUNDA COLECCION
+    public List<String> leerNombreDoc(String coleccion, String documento, String coleccion2) throws ExecutionException, InterruptedException {
+        ApiFuture<QuerySnapshot> future = db.collection(coleccion).document(documento).collection(coleccion2).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<String> res = new ArrayList<>();
+
+        for (QueryDocumentSnapshot document : documents) {
+            res.add(document.getId());
         }
         return res;
     }
@@ -147,6 +180,34 @@ public class UVGMeetDB {
             }
 
         }
+        return "";
+    }
+
+    public String verificarExistenciaDos(String coleccion, Object propiedad, Object comparacion, Object propiedad2, Object comparacion2) throws ExecutionException, InterruptedException {
+        ApiFuture<QuerySnapshot> future = db.collection(coleccion).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        int cumple2 = 0;
+        String docId = "";
+
+        for (QueryDocumentSnapshot document : documents) {
+            for (Map.Entry<String, Object> entry : document.getData().entrySet()) {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                if (key.equals(propiedad)){
+                    System.out.println("Comparando " + comparacion + " : " + value);
+                    if (value.toString().equals(comparacion.toString())){
+                        cumple2+=1;
+                    }
+                }else if (key.equals(propiedad2)){
+                    if (value.toString().equals(comparacion2.toString())){
+                        cumple2+=1;
+                    }
+                }
+                docId = document.getId();
+            }
+
+        }
+        if (cumple2 ==2){return docId;}
         return "";
     }
 
