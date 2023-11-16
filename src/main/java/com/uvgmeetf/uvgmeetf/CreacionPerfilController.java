@@ -122,18 +122,13 @@ public class CreacionPerfilController {
 
     @FXML
     void subirImagen(ActionEvent event) throws IOException {
-        // Create a FileChooser object.
         FileChooser fileChooser = new FileChooser();
 
-        // Set the FileChooser to select image files.
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", "*.png"));
 
-        // Show the FileChooser dialog.
         File selectedFile = fileChooser.showOpenDialog(null);
 
-        // Get the selected file from the FileChooser.
         if (selectedFile != null) {
-            // Create a Path object to the path where you want to save the image.
             Path path = Paths.get("src\\main\\resources\\com\\uvgmeetf\\uvgmeetf\\SessionAssets\\"+this.sesion.getId()+".png");
 
             // Create a Files object to copy the image file to the path.
