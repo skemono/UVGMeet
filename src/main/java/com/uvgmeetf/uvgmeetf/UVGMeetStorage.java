@@ -24,34 +24,14 @@ public class UVGMeetStorage {
     }
 
     public static void uploadObject(String bucketName, String objectName, String filePath) throws IOException {
-        // The ID of your GCP project
-        // String projectId = "your-project-id";
-
-        // The ID of your GCS bucket
-        // String bucketName = "your-unique-bucket-name";
-
-        // The ID of your GCS object
-        // String objectName = "your-object-name";
-
-        // The path to your file to upload
-        // String filePath = "path/to/your/file"
-
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         BlobId blobId = BlobId.of(bucketName, objectName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
 
-        // Optional: set a generation-match precondition to avoid potential race
-        // conditions and data corruptions. The request returns a 412 error if the
-        // preconditions are not met.
         Storage.BlobWriteOption precondition;
         if (storage.get(bucketName, objectName) == null) {
-            // For a target object that does not yet exist, set the DoesNotExist precondition.
-            // This will cause the request to fail if the object is created before the request runs.
             precondition = Storage.BlobWriteOption.doesNotExist();
         } else {
-            // If the destination already exists in your bucket, instead set a generation-match
-            // precondition. This will cause the request to fail if the existing object's generation
-            // changes before the request runs.
             precondition =
                     Storage.BlobWriteOption.generationMatch(
                             storage.get(bucketName, objectName).getGeneration());
@@ -63,17 +43,6 @@ public class UVGMeetStorage {
     }
 
     public static void downloadObject(String bucketName, String objectName, String destFilePath) {
-        // The ID of your GCP project
-        // String projectId = "your-project-id";
-
-        // The ID of your GCS bucket
-        // String bucketName = "your-unique-bucket-name";
-
-        // The ID of your GCS object
-        // String objectName = "your-object-name";
-
-        // The path to which the file should be downloaded
-        // String destFilePath = "/local/path/to/file.txt";
 
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
 
@@ -88,14 +57,6 @@ public class UVGMeetStorage {
                         + destFilePath);
     }
     public static void deleteObject(String bucketName, String objectName) {
-        // The ID of your GCP project
-        // String projectId = "your-project-id";
-
-        // The ID of your GCS bucket
-        // String bucketName = "your-unique-bucket-name";
-
-        // The ID of your GCS object
-        // String objectName = "your-object-name";
 
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         Blob blob = storage.get(bucketName, objectName);
@@ -104,9 +65,6 @@ public class UVGMeetStorage {
             return;
         }
 
-        // Optional: set a generation-match precondition to avoid potential race
-        // conditions and data corruptions. The request to upload returns a 412 error if
-        // the object's generation number does not match your precondition.
         Storage.BlobSourceOption precondition =
                 Storage.BlobSourceOption.generationMatch(blob.getGeneration());
 
