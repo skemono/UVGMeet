@@ -185,7 +185,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/lordk/Downloads/BtonMatch.png" />
+                              <Image url="file:/C:/Users/lordk/OneDrive/Documents/Java/UVGMeet/src/main/resources/com/uvgmeetf/uvgmeetf/matchBton.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -194,7 +194,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/lordk/Downloads/BtonActividades.png" />
+                              <Image url="file:/C:/Users/lordk/OneDrive/Documents/Java/UVGMeet/src/main/resources/com/uvgmeetf/uvgmeetf/activityBton.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -203,7 +203,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/lordk/Downloads/BtonChat.png" />
+                              <Image url="file:/C:/Users/lordk/OneDrive/Documents/Java/UVGMeet/src/main/resources/com/uvgmeetf/uvgmeetf/chatBton.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -212,7 +212,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/lordk/Downloads/BtonPerfil.png" />
+                              <Image url="file:/C:/Users/lordk/OneDrive/Documents/Java/UVGMeet/src/main/resources/com/uvgmeetf/uvgmeetf/profileBton.png" />
                            </source>
                         </ImageInput>
                      </effect>
